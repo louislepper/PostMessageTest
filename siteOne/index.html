@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SiteOne</title>
+</head>
+<body>
+<h1>I'm Site One</h1>
+<h1>I'm at <a href="http://localhost:8000">localhost:8000</a></h1>
+<div id="messages"></div>
+<script type="application/javascript">
+    window.addEventListener("message", receiveMessage, false);
+
+    sources = [];
+
+    function receiveMessage(event)
+    {
+        var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+        var newElement = document.createElement("p");
+        var length = sources.push(event.source);
+        newElement.innerHTML = "data: " + event.data + " origin: " + event.origin + " source index: " + (length - 1);
+        var newLine = document.createElement("br");
+        document.getElementById('messages').appendChild(newElement);
+        document.getElementById('messages').appendChild(newLine);
+    }
+</script>
+</body>
+</html>

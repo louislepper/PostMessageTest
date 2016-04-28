@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SiteTwo</title>
+</head>
+<body>
+<h1>I'm Site Two</h1>
+<h1>I'm at <a href="http://localhost:8001">localhost:8001</a></h1>
+<div id="messages"></div>
+<!--<iframe id="frameOneIFrame" src="http://localhost:8000" width="100%" height="500px"></iframe>-->
+<iframe id="frameOneIFrame" src="data:text/html;base64, PGh0bWw+DQo8c2NyaXB0Pg0KICAgIHdpbmRvdy50b3AucG9zdE1lc3NhZ2UoIkhlbGxvIiwgIioiKTsNCjwvc2NyaXB0Pg0KPC9odG1sPg==" width="100%" height="500px"></iframe>
+<!--<html>-->
+<!--<script>-->
+    <!--window.top.postMessage("Hello", "*");-->
+<!--</script>-->
+<!--</html>-->
+
+<!--<iframe id="frameOneIFrame" src="http://localhost:8001/init.html" width="100%" height="500px"></iframe>-->
+
+<script type="application/javascript">
+    var isMSIE = /*@cc_on!@*/0;
+
+    if (isMSIE) {
+        // do IE-specific things
+        var frame = document.getElementById("frameOneIFrame").contentWindow;
+        frame.location = "http://localhost:8001/init.html";
+    } else {
+        // do non IE-specific things
+    }
+    window.addEventListener("message", receiveMessage, false);
+
+    sources = [];
+
+    function receiveMessage(event)
+    {
+        var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+        var newElement = document.createElement("p");
+        var length = sources.push(event.source);
+        newElement.innerHTML = "data: " + event.data + " origin: " + event.origin + " source index: " + (length - 1);
+        var newLine = document.createElement("br");
+        document.getElementById('messages').appendChild(newElement);
+        document.getElementById('messages').appendChild(newLine);
+    }
+</script>
+</body>
+</html>
