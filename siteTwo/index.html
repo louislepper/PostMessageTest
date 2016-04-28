@@ -8,30 +8,28 @@
 <h1>I'm Site Two</h1>
 <h1>I'm at <a href="http://d026f8f4.ngrok.io">http://d026f8f4.ngrok.io   localhost:8001</a></h1>
 <div id="messages"></div>
-<!--<iframe id="frameOneIFrame" src="http://localhost:8000" width="100%" height="500px"></iframe>-->
-<iframe id="frameOneIFrame" src="about:blank" width="100%" height="500px"></iframe>
-<!--<html>-->
-<!--<script>-->
-    <!--window.top.postMessage("Hello", "*");-->
-<!--</script>-->
-<!--</html>-->
 
-<!--<iframe id="frameOneIFrame" src="http://localhost:8001/init.html" width="100%" height="500px"></iframe>-->
+<iframe id="frameOneIFrame" src="about:blank" width="100%" height="500px"></iframe>
+
+
 
 <script type="application/javascript">
-//    alert("Entered JS");
     var isMSIE = /*@cc_on!@*/0;
     var frame = document.getElementById("frameOneIFrame").contentWindow;
-//    alert("Everything should get here!");
 
     if (isMSIE) {
-//        alert("I am IE!");
         // do IE-specific things
         frame.location = "http://d026f8f4.ngrok.io/init.html";
     } else {
         // do non IE-specific things
-//        alert("Not IE!");
+        // A data url avoids a round trip, and allows the topmost frame to set the location of the innermost.
         frame.location = "data:text/html;base64, PGh0bWw+DQo8c2NyaXB0Pg0KICAgIHdpbmRvdy50b3AucG9zdE1lc3NhZ2UoIkhlbGxvIiwgIioiKTsNCjwvc2NyaXB0Pg0KPC9odG1sPg==";
+        //Base64 of:
+        //<html>
+        //  <script>
+        //      window.top.postMessage("Hello", "*");
+        //  < / script> <!--Spaces added for JS comment reasons, remove when encoding.-->
+        //</html>
     }
     window.addEventListener("message", receiveMessage, false);
 

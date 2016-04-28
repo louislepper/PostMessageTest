@@ -21,13 +21,14 @@
         var length = sources.push(event.source);
         newElement.innerHTML = "data: " + event.data + " origin: " + event.origin + " source index: " + (length - 1);
         if(event.data === "Hello") {
-            event.source.location = "http://localhost:8000"
+            event.source.location = "http://30765485.ngrok.io"
         }
         var newLine = document.createElement("br");
         document.getElementById('messages').appendChild(newElement);
         document.getElementById('messages').appendChild(newLine);
     }
 </script>
+
 <iframe id="frameTwoIFrame"  src="http://d026f8f4.ngrok.io" width="100%" height="900px"></iframe>
 
 </body>
