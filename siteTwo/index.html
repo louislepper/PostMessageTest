@@ -21,12 +21,15 @@
 <script type="application/javascript">
     var isMSIE = /*@cc_on!@*/0;
     var frame = document.getElementById("frameOneIFrame").contentWindow;
+    alert("Everything should get here!");
 
     if (isMSIE) {
+        alert("I am IE!");
         // do IE-specific things
         frame.location = "http://localhost:8001/init.html";
     } else {
         // do non IE-specific things
+        alert("Not IE!");
         frame.location = "data:text/html;base64, PGh0bWw+DQo8c2NyaXB0Pg0KICAgIHdpbmRvdy50b3AucG9zdE1lc3NhZ2UoIkhlbGxvIiwgIioiKTsNCjwvc2NyaXB0Pg0KPC9odG1sPg==";
     }
     window.addEventListener("message", receiveMessage, false);
