@@ -9,7 +9,7 @@
 <h1>I'm at <a href="http://localhost:8001">localhost:8001</a></h1>
 <div id="messages"></div>
 <!--<iframe id="frameOneIFrame" src="http://localhost:8000" width="100%" height="500px"></iframe>-->
-<iframe id="frameOneIFrame" src="data:text/html;base64, PGh0bWw+DQo8c2NyaXB0Pg0KICAgIHdpbmRvdy50b3AucG9zdE1lc3NhZ2UoIkhlbGxvIiwgIioiKTsNCjwvc2NyaXB0Pg0KPC9odG1sPg==" width="100%" height="500px"></iframe>
+<iframe id="frameOneIFrame" src="about:blank" width="100%" height="500px"></iframe>
 <!--<html>-->
 <!--<script>-->
     <!--window.top.postMessage("Hello", "*");-->
@@ -20,13 +20,14 @@
 
 <script type="application/javascript">
     var isMSIE = /*@cc_on!@*/0;
+    var frame = document.getElementById("frameOneIFrame").contentWindow;
 
     if (isMSIE) {
         // do IE-specific things
-        var frame = document.getElementById("frameOneIFrame").contentWindow;
         frame.location = "http://localhost:8001/init.html";
     } else {
         // do non IE-specific things
+        frame.location = "data:text/html;base64, PGh0bWw+DQo8c2NyaXB0Pg0KICAgIHdpbmRvdy50b3AucG9zdE1lc3NhZ2UoIkhlbGxvIiwgIioiKTsNCjwvc2NyaXB0Pg0KPC9odG1sPg==";
     }
     window.addEventListener("message", receiveMessage, false);
 
